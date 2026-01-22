@@ -396,15 +396,35 @@
     }
     .iconDot svg{ width:18px; height:18px; fill: rgba(62, 96, 78, .95); }
 
-    @media (max-width: 860px){
-      .schedLine{ left:30px; }
-      .schedItem{
-        grid-template-columns: 60px 1fr;
-        gap: 16px;
-      }
-      .schedCard{ justify-self: start; width: 100%; }
-      .schedCard.right{ justify-self: start; }
-    }
+   /* ✅ Fix schedule on mobile (iPhone) */
+@media (max-width: 860px){
+  /* move the timeline line to the left on mobile */
+  .schedLine{
+    left: 20px !important;
+  }
+
+  /* turn each schedule row into a simple mobile layout */
+  .schedItem{
+    display: flex !important;
+    align-items: center;
+    gap: 14px;
+    margin: 22px 0;
+  }
+
+  /* remove the empty spacer divs in the schedule markup */
+  .schedItem > div:empty{
+    display: none !important;
+  }
+
+  /* force icon on the left, card on the right */
+  .iconDot{ order: 1; flex: 0 0 auto; }
+  .schedCard{ order: 2; width: 100% !important; max-width: 100% !important; }
+
+  /* spacing so content doesn’t sit under the line */
+  .schedWrap{
+    padding-left: 10px;
+  }
+}
 
     /* =========================================================
        VENUE & TRAVEL (left card + right icon list)
